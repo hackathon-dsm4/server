@@ -27,8 +27,8 @@ naver:
 
 auth:
   google:
-    base-url: https://accounts.google.com/o/oauth2/auth
-    client-id: 582862839129-ati79d5ean376nbradcej6qjok6hkcfh.apps.googleusercontent.com
+    base-url: sdfdsfd
+    client-id: dsfsdfsd
     redirect-url: http://localhost:3000/google/callback
 
 jwt:
@@ -36,5 +36,5 @@ jwt:
   access-time: 3600000
   prefix: Bearer
   header: Authorization
-  secret-key: insert1234!!
+  secret-key: sdfsdfds
 
