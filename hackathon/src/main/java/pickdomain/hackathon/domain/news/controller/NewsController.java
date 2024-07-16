@@ -14,7 +14,7 @@ public class NewsController {
     private final NewsSerivce newsSerivce;
     @GetMapping
     public String news(
-            @RequestParam(value = "category") Type type
+            @RequestParam(value = "category") String type
     ) {
         return newsSerivce.news(type);
     };

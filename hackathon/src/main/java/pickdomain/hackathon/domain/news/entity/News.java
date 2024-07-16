@@ -3,6 +3,7 @@ package pickdomain.hackathon.domain.news.entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import pickdomain.hackathon.domain.feed.entity.Type;
 
 import javax.persistence.*;
 

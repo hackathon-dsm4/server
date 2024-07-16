@@ -20,9 +20,9 @@ public class NoticeFeedService {
     private final NewsRepository newsRepository;
 
     @Transactional
-    public void execute(NoticeFeedRequest noticeFeedRequest, Long id) {
+    public void execute(NoticeFeedRequest noticeFeedRequest) {
         User user = userFacade.getCurrentUser();
-        News news = newsRepository.findById(id).orElseThrow(()-> new RuntimeException());
+        News news = newsRepository.findById(noticeFeedRequest.getId()).orElseThrow(()-> new RuntimeException());
         Feed feed = Feed.builder()
                 .content(noticeFeedRequest.getContent())
                 .userName(user.getName())

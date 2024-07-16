@@ -22,10 +22,10 @@ public class NewsSerivce {
     String clientSecret;
 
 
-   public String news(Type type){
+   public String news(String type){
        String text = null;
        try {
-           text = URLEncoder.encode(type.toString(), "UTF-8");
+           text = URLEncoder.encode(type, "UTF-8");
        } catch (UnsupportedEncodingException e) {
            throw new RuntimeException("검색어 인코딩 실패",e);
        }
