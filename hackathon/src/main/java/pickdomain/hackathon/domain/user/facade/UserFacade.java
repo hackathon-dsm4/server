@@ -16,7 +16,7 @@ public class UserFacade {
     private final UserRepository userRepository;
 
     public User findByUserId(String userId) {
-        return userRepository.findById(userId)
+        return userRepository.findByEmail(userId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }
 

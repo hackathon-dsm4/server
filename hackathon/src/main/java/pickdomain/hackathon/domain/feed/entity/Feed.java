@@ -17,14 +17,17 @@ import javax.persistence.*;
 public class Feed {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long feedId;
     private String content;
     @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
     @ManyToOne
+    @JoinColumn(name = "news_id", nullable = false)
     private News news;
     private Type type;
-    private Integer like = 0;
+    @Column(columnDefinition = "INT")
+    private Integer like;
 
     public void addLike() {
         this.like += 1;
