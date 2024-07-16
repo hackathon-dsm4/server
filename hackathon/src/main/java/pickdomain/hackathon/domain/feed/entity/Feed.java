@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pickdomain.hackathon.domain.news.entity.News;
+import pickdomain.hackathon.domain.user.entity.User;
 
 import javax.persistence.*;
 
@@ -18,7 +19,8 @@ public class Feed {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
-//    private String userName;
+    @ManyToOne
+    private User user;
     @ManyToOne
     private News news;
     private Type type;
@@ -30,4 +32,5 @@ public class Feed {
 
     public void minusLike() {
         this.like -= 1;
+    }
 }
