@@ -30,4 +30,5 @@ public class Feed {
 
     public void minusLike() {
         this.like -= 1;
+    }
 }

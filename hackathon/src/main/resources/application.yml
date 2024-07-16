@@ -1,9 +1,11 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${URL}
-    username: ${USER}
-    password: ${PASSWORD}
+    url: jdbc:mysql://localhost:3306/ioj
+    username: insert
+    password: insert1234
     hikari:
       maxLifetime: 580000
   redis:
@@ -22,3 +24,17 @@ spring:
 naver:
   naver_c: ${A}
   naver_s: ${S}
+
+auth:
+  google:
+    base-url: https://accounts.google.com/o/oauth2/auth
+    client-id: 582862839129-ati79d5ean376nbradcej6qjok6hkcfh.apps.googleusercontent.com
+    redirect-url: http://localhost:3000/google/callback
+
+jwt:
+  refresh-time: 2592000000
+  access-time: 3600000
+  prefix: Bearer
+  header: Authorization
+  secret-key: insert1234!!
+

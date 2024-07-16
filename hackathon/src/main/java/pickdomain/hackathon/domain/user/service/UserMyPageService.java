@@ -13,5 +13,5 @@ public class UserMyPageService {
     private final LikeRepository likeRepository;
     private final UserFacade userFacade;
 
-    public
+    public void execute() {}
 }
