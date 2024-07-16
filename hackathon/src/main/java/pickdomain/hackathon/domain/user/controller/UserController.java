@@ -2,15 +2,9 @@ package pickdomain.hackathon.domain.user.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-import pickdomain.hackathon.domain.user.dto.response.TokenResponse;
 import pickdomain.hackathon.domain.user.dto.response.UserNoticeResponse;
-import pickdomain.hackathon.domain.user.service.UserLoginService;
 import pickdomain.hackathon.domain.user.service.UserMyPageService;
-import pickdomain.hackathon.global.ouath.AuthLoginRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,9 +19,9 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
     private final ProfileService profileService;
-    private final UserLoginService userLoginService;
     private final UserMyPageService userMyPageService;
 
+    @Operation(summary = "내정보확인")
     @GetMapping
     public InfoUserResponse findMyInfo() {
         return profileService.execute();

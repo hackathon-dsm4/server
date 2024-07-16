@@ -22,7 +22,6 @@ public class UserMyPageService {
     private final LikeRepository likeRepository;
     private final UserFacade userFacade;
 
-<<<<<<< HEAD
     public List<UserNoticeResponse> queryMyNotice() {
         User user = userFacade.getCurrentUser();
         return feedRepository.findByUser(user).stream()
@@ -42,7 +41,5 @@ public class UserMyPageService {
                 .collect(Collectors.toList());
         return userNoticeResponses;
     }
-=======
     public void execute() {}
->>>>>>> origin/ouath
 }
