@@ -1,4 +1,4 @@
-package pickdomain.hackathon.domain.feed.domain.repository;
+package pickdomain.hackathon.domain.feed.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import pickdomain.hackathon.domain.feed.entity.Feed;

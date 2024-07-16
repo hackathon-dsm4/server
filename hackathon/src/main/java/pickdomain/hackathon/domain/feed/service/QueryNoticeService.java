@@ -3,7 +3,7 @@ package pickdomain.hackathon.domain.feed.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pickdomain.hackathon.domain.feed.domain.repository.FeedRepository;
+import pickdomain.hackathon.domain.feed.repository.FeedRepository;
 import pickdomain.hackathon.domain.feed.presentation.dto.response.NoticeResponse;
 
 import java.util.List;

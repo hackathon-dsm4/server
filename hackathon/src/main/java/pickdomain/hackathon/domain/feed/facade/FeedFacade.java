@@ -2,7 +2,7 @@ package pickdomain.hackathon.domain.feed.facade;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import pickdomain.hackathon.domain.feed.domain.repository.FeedRepository;
+import pickdomain.hackathon.domain.feed.repository.FeedRepository;
 import pickdomain.hackathon.domain.feed.entity.Feed;
 import pickdomain.hackathon.domain.feed.exception.FeedNotFoundException;
 

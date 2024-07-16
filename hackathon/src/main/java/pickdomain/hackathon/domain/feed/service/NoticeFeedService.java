@@ -3,12 +3,11 @@ package pickdomain.hackathon.domain.feed.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pickdomain.hackathon.domain.feed.domain.repository.FeedRepository;
+import pickdomain.hackathon.domain.feed.repository.FeedRepository;
 import pickdomain.hackathon.domain.feed.entity.Feed;
 import pickdomain.hackathon.domain.feed.presentation.dto.request.NoticeFeedRequest;
 import pickdomain.hackathon.domain.news.entity.News;
 import pickdomain.hackathon.domain.news.repository.NewsRepository;
-import pickdomain.hackathon.domain.user.entity.User;
 import pickdomain.hackathon.domain.user.facade.UserFacade;
 
 @RequiredArgsConstructor
@@ -27,6 +26,7 @@ public class NoticeFeedService {
                 .content(noticeFeedRequest.getContent())
 //                .userName(user.getName())
                 .news(news)
+                .like(0)
                 .build();
         feedRepository.save(feed);
     }

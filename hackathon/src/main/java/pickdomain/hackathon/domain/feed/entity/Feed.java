@@ -22,4 +22,12 @@ public class Feed {
     @ManyToOne
     private News news;
     private Type type;
+    private Integer like = 0;
+
+    public void addLike() {
+        this.like += 1;
+    }
+
+    public void minusLike() {
+        this.like -= 1;
 }
