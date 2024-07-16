@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import pickdomain.hackathon.domain.feed.entity.Type;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -23,10 +24,10 @@ public class NewsSerivce {
     String clientSecret;
 
 
-   public String news(String type){
+   public String news(Type type){
        String text = null;
        try {
-           text = URLEncoder.encode(type, "UTF-8");
+           text = URLEncoder.encode(type.toString(), "UTF-8");
        } catch (UnsupportedEncodingException e) {
            throw new RuntimeException("검색어 인코딩 실패",e);
        }
@@ -38,6 +39,7 @@ public class NewsSerivce {
        Map<String, String> requestHeaders = new HashMap<>();
        requestHeaders.put("X-Naver-Client-Id", clientId);
        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+       System.out.println(get(apiURL,requestHeaders));
        return get(apiURL,requestHeaders);
    }
 
