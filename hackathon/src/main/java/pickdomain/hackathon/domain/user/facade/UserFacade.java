@@ -14,13 +14,6 @@ import pickdomain.hackathon.domain.user.repository.UserRepository;
 @Component
 public class UserFacade {
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-
-    public void checkPassword(User user, String password) {
-        if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw PasswordMismatchException.EXCEPTION;
-        }
-    }
 
     public User findByUserId(String userId) {
         return userRepository.findById(userId)
