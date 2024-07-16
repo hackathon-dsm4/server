@@ -5,10 +5,8 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import pickdomain.hackathon.domain.feed.entity.Type;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -19,9 +17,11 @@ public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
-    private String content;
+    private String originallink;
+    private String description;
+    private String pubDate;
+    private String link;
+    @Enumerated(EnumType.STRING)
     private Type type;
-    private String image;
 }
