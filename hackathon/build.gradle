@@ -53,6 +53,7 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.14.2'
     implementation platform("org.springframework.cloud:spring-cloud-dependencies:2021.0.5")
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
 }
 
 tasks.named('test') {
