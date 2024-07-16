@@ -13,12 +13,14 @@ public class NoticeResponse {
 //    private String userName;
     private String newsTitle;
     private Type type;
+    private Integer like;
 
     public static NoticeResponse noticeResponse(Feed feed) {
         return NoticeResponse.builder()
                 .content(feed.getContent())
                 .newsTitle(feed.getNews().getTitle())
                 .type(feed.getNews().getType())
+                .like(feed.getLike())
                 .build();
     }
 }
