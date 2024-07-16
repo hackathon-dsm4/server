@@ -11,6 +11,11 @@ import pickdomain.hackathon.domain.user.dto.response.UserNoticeResponse;
 import pickdomain.hackathon.domain.user.service.UserLoginService;
 import pickdomain.hackathon.domain.user.service.UserMyPageService;
 import pickdomain.hackathon.global.ouath.AuthLoginRequest;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import pickdomain.hackathon.domain.user.dto.response.InfoUserResponse;
+import pickdomain.hackathon.domain.user.service.ProfileService;
 
 import java.util.List;
 
@@ -19,14 +24,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+    private final ProfileService profileService;
     private final UserLoginService userLoginService;
     private final UserMyPageService userMyPageService;
 
-    @Operation(summary = "회원가입")
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/login")
-    public TokenResponse login(@RequestBody AuthLoginRequest authLoginRequest){
-        return userLoginService.signIn(authLoginRequest);
+    @GetMapping
+    public InfoUserResponse findMyInfo() {
+        return profileService.execute();
     }
 
     @Operation(summary = "내가 생성한 게시글 확인")

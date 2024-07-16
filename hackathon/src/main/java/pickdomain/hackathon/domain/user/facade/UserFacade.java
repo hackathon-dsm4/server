@@ -3,10 +3,8 @@ package pickdomain.hackathon.domain.user.facade;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import pickdomain.hackathon.domain.user.entity.User;
-import pickdomain.hackathon.domain.user.exception.PasswordMismatchException;
 import pickdomain.hackathon.domain.user.exception.UserNotFoundException;
 import pickdomain.hackathon.domain.user.repository.UserRepository;
 

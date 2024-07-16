@@ -4,7 +4,6 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import pickdomain.hackathon.global.ouath.AuthGoogleLoginDto;
 
 import javax.persistence.*;
 
@@ -24,13 +23,5 @@ public class User {
         this.name = name;
         this.email = email;
         this.profileImage = profileImage;
-    }
-
-    public static User createUserByGoogleLogin(AuthGoogleLoginDto dto) {
-        return User.builder()
-                .name(dto.getName())
-                .email(dto.getEmail())
-                .profileImage(dto.getPicture())
-                .build();
     }
 }
