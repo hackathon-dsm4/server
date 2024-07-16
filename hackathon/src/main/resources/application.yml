@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${URL}
+    username: ${USER}
+    password: ${PASSWORD}
+    hikari:
+      maxLifetime: 580000
+  redis:
+    host: localhost
+    port: 6379
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+    database: mysql
+
+naver:
+  naver_c: ${A}
+  naver_s: ${S}
