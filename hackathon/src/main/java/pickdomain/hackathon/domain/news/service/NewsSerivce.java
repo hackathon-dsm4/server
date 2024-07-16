@@ -2,9 +2,7 @@ package pickdomain.hackathon.domain.news.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import pickdomain.hackathon.domain.feed.entity.Type;
 
 import java.io.*;
 import java.net.HttpURLConnection;

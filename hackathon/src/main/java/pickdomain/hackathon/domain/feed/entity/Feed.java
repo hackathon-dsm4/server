@@ -16,8 +16,7 @@ public class Feed {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
-    @Enumerated(EnumType.STRING)
-    private Type type;
+    private String userName;
     @ManyToOne
     private News news;
 }
