@@ -33,12 +33,6 @@ public class SecurityConfig {
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-
-                .and()
-                .authorizeRequests()
-
-                .anyRequest().authenticated()
-
                 .and()
                 .apply(new FilterConfig(jwtTokenResolver, objectMapper))
                 .and().build();

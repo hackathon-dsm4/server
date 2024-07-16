@@ -21,11 +21,11 @@ public class NoticeFeedService {
 
     @Transactional
     public void execute(NoticeFeedRequest noticeFeedRequest) {
-        User user = userFacade.getCurrentUser();
+//        User user = userFacade.getCurrentUser();
         News news = newsRepository.findById(noticeFeedRequest.getId()).orElseThrow(()-> new RuntimeException());
         Feed feed = Feed.builder()
                 .content(noticeFeedRequest.getContent())
-                .userName(user.getName())
+//                .userName(user.getName())
                 .news(news)
                 .build();
         feedRepository.save(feed);
