@@ -2,8 +2,11 @@ package pickdomain.hackathon.domain.feed.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import pickdomain.hackathon.domain.feed.entity.Cloud;
 import pickdomain.hackathon.domain.feed.entity.Type;
+import pickdomain.hackathon.domain.feed.presentation.dto.response.WordResponse;
 import pickdomain.hackathon.domain.feed.repository.CloudRepository;
 import pickdomain.hackathon.domain.news.entity.News;
 import pickdomain.hackathon.domain.news.repository.NewsRepository;
@@ -13,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
 public class WordCloudService {
@@ -59,5 +63,17 @@ public class WordCloudService {
         });
 
         return topTenWords;
+    }
+
+    public List<WordResponse> getWord(LocalDateTime localDateTime, Type type) {
+        List<Cloud> wordCloud = wordRepository.findAllByIssueDateAndKind(localDateTime, type).orElse(null);
+        if(CollectionUtils.isEmpty(wordCloud)) return null;
+        return wordCloud.stream().map(cloud -> WordResponse.builder()
+                        .wordId(cloud.getWordId())
+                        .word(cloud.getWord())
+                        .count(cloud.getCount())
+                        .kind(cloud.getKind())
+                        .issueDate(cloud.getIssueDate()).build())
+                .collect(Collectors.toList());
     }
 }
