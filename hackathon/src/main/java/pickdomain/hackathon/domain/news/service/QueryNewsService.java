@@ -14,8 +14,8 @@ public class QueryNewsService {
     public QueryNewsResponse execute(Long id) {
         News news = newsRepository.findById(id).orElse(null);
         return new QueryNewsResponse(
-                news.getTitle(), news.getOriginallink(), news.getDescription(), news.getLink(),
-                news.getPubDate(), news.getType()
+                news.getTitle(), news.getOriginallink(), news.getDescription(), news.getPubDate(),news.getLink(),
+                 news.getType()
         );
     }
 }
