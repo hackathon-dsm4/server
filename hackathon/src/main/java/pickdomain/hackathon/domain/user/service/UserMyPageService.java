@@ -7,6 +7,8 @@ import pickdomain.hackathon.domain.feed.entity.FeedLike;
 import pickdomain.hackathon.domain.feed.entity.Notice;
 import pickdomain.hackathon.domain.feed.repository.FeedRepository;
 import pickdomain.hackathon.domain.feed.repository.LikeRepository;
+import pickdomain.hackathon.domain.news.entity.News;
+import pickdomain.hackathon.domain.user.dto.response.UserNewsResponse;
 import pickdomain.hackathon.domain.user.dto.response.UserNoticeResponse;
 import pickdomain.hackathon.domain.user.entity.User;
 import pickdomain.hackathon.domain.user.facade.UserFacade;
@@ -25,20 +27,29 @@ public class UserMyPageService {
     public List<UserNoticeResponse> queryMyNotice() {
         User user = userFacade.getCurrentUser();
         return feedRepository.findByUser(user).stream()
-                .map(UserNoticeResponse::userMyPageResponse)
+                .map(it  ->new UserNoticeResponse(
+                        it.getNews().getTitle(), it.getContent(), it.getNews().getType(), it.getCount(), it.getUser().getName(), it.getUser().getProfileImage(), isAlreadyLiked(it, user)
+                ))
                 .collect(Collectors.toList());
     }
 
-    public List<UserNoticeResponse> queryShareNotice() {
+    public List<UserNewsResponse> queryShareNotice() {
         User currentUser = userFacade.getCurrentUser();
         List<FeedLike> likes = likeRepository.findByUser(currentUser);
 
-        List<UserNoticeResponse> userNoticeResponses = likes.stream()
+        List<UserNewsResponse> userNoticeResponses = likes.stream()
                 .map(like -> {
-                    Notice feed = like.getFeed();
-                    return UserNoticeResponse.userMyPageResponse(feed);
+                    News feed = like.getFeed().getNews();
+                    return UserNewsResponse.userNewsResponse(feed);
                 })
                 .collect(Collectors.toList());
         return userNoticeResponses;
+    }
+
+    private boolean isAlreadyLiked(Notice news, User user) {
+        if (user == null) {
+            return false; // or throw an exception
+        }
+        return likeRepository.existsByUserAndFeed(user, news);
     }
 }

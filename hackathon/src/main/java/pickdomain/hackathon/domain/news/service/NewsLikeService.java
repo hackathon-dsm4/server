@@ -4,6 +4,7 @@ package pickdomain.hackathon.domain.news.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pickdomain.hackathon.domain.feed.presentation.dto.response.NoticeCountResponse;
 import pickdomain.hackathon.domain.news.entity.News;
 import pickdomain.hackathon.domain.news.entity.NewsLike;
 import pickdomain.hackathon.domain.news.repository.NewsLikeRepository;
@@ -19,7 +20,7 @@ public class NewsLikeService {
     private final UserFacade userFacade; // 현재 로그인한 사용자 정보 제공 Facade
 
     @Transactional // 메서드 실행을 하나의 트랜잭션으로 처리
-    public Integer execute(Long id) {
+    public NoticeCountResponse execute(Long id) {
         // 주어진 ID로 뉴스를 조회하고, 존재하지 않으면 RuntimeException 발생
         News news = newsRepository.findById(id).orElseThrow(() -> new RuntimeException("News not found"));
 
@@ -32,7 +33,7 @@ public class NewsLikeService {
             newsLikeRepository.deleteByUserAndNews(user, news);
             news.minusLike();
             // 현재 뉴스의 좋아요 수를 반환
-            return news.getCount();
+            return new NoticeCountResponse(news.getCount(), Boolean.FALSE);
         }
 
         // 사용자가 아직 좋아요를 누르지 않았다면, 새로운 좋아요 엔티티를 저장하고 뉴스의 좋아요 수를 증가시킴
@@ -43,7 +44,7 @@ public class NewsLikeService {
                         .build()
         );
         news.addLike();
-        return news.getCount();
+        return new NoticeCountResponse(news.getCount(), Boolean.TRUE);
     }
 
     private boolean isAlreadyLiked(News news, User user) {

@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import pickdomain.hackathon.domain.user.dto.response.UserNewsResponse;
 import pickdomain.hackathon.domain.user.dto.response.UserNoticeResponse;
 import pickdomain.hackathon.domain.user.service.UserMyPageService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +38,7 @@ public class UserController {
 
     @ApiOperation("내가 좋아요 누른 게시글 확인")
     @GetMapping("my-share")
-    public List<UserNoticeResponse> myShare() {
+    public List<UserNewsResponse> myShare() {
         return userMyPageService.queryShareNotice();
     }
 }

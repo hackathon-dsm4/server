@@ -4,10 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pickdomain.hackathon.domain.feed.entity.Notice;
 import pickdomain.hackathon.domain.feed.entity.Type;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "news")
 @Getter
@@ -30,6 +33,8 @@ public class News {
     private Integer count;
     @Column(columnDefinition = "TEXT")
     private String profile;
+    @OneToMany(mappedBy = "news")
+    private List<Notice> notices = new ArrayList<>();
 
     public void addLike() {
         this.count += 1;
