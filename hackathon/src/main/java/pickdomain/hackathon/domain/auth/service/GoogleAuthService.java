@@ -30,10 +30,6 @@ public class GoogleAuthService {
             userRepository.save(
                 new User(response.getName(), email, response.getPicture()));
         }
-
-        return new TokenResponse(
-            jwtTokenProvider.createAccessToken(email),
-            jwtTokenProvider.createRefreshToken(email)
-        );
+        return jwtTokenProvider.createToken(email);
     }
 }

@@ -26,6 +26,14 @@ public class WordNewsService {
     @Transactional(readOnly = true)
     public List<NoticeWordResponse> asdf(LocalDate date, String type, String word) {
         String today = date.format(dateTimeFormatter);
+        if (word == null) {
+            return newsRepository.findAll().stream().map( it ->
+                            NoticeWordResponse.noticeWordResponse(it, "인기있는 소식")
+                    )
+                    .collect(Collectors.toList());
+        }
+
+
         return  newsRepository.findAllByPubDateAndTypeAndDescription(
                 Type.valueOf(type).name(),today, word
         ).stream()

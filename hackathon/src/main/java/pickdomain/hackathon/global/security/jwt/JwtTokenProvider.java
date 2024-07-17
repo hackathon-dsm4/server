@@ -11,12 +11,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import pickdomain.hackathon.domain.auth.domain.RefreshToken;
 import pickdomain.hackathon.domain.auth.domain.repository.RefreshTokenRepository;
+import pickdomain.hackathon.domain.auth.presentation.dto.res.AccessTokenResponse;
+import pickdomain.hackathon.domain.auth.presentation.dto.res.TokenResponse;
 import pickdomain.hackathon.global.config.properties.JwtProperties;
 import pickdomain.hackathon.global.exception.InvalidJwtException;
 import pickdomain.hackathon.global.security.principle.AuthDetailsService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -29,17 +32,14 @@ public class JwtTokenProvider {
     private static final String ACCESS_KEY = "access_token";
     private static final String REFRESH_KEY = "refresh_token";
 
-    public String createAccessToken(String email) {
-        return createToken(email, ACCESS_KEY, 1000*jwtProperties.getAccessTime());
-    }
-
     @Transactional
-    public String createRefreshToken(String email) {
-        String token = createToken(email, REFRESH_KEY, jwtProperties.getRefreshTime());
+    public TokenResponse createToken(String email) {
+        String token = refreshToken(REFRESH_KEY, jwtProperties.getRefreshTime());
+        String accessToken = createToken(email, ACCESS_KEY, 1000*jwtProperties.getAccessTime());
         refreshTokenRepository.save(
                 new RefreshToken(token, email)
         );
-        return token;
+        return new TokenResponse(accessToken, token);
     }
 
     private String createToken(String email, String type, Long time) {
@@ -51,6 +51,32 @@ public class JwtTokenProvider {
                 .setExpiration(new Date(now.getTime() + time))
                 .compact();
     }
+
+    private String refreshToken(String type, Long time) {
+        Date now = new Date();
+        return Jwts.builder()
+                .setHeaderParam("typ", type)
+                .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
+                .setExpiration(new Date(System.currentTimeMillis() + jwtProperties.getRefreshTime() * 1000))
+                .setIssuedAt(new Date())
+                .compact();
+    }
+
+    public TokenResponse reIssue(String refreshToken) {
+        Optional<RefreshToken> optionalToken = refreshTokenRepository.findById(refreshToken);
+        if (optionalToken.isPresent()) {
+            RefreshToken token = optionalToken.get();
+            String id = token.getToken();
+
+            TokenResponse tokenResponse = createToken(id);
+            token.update(tokenResponse.getRefreshToken());
+            return new TokenResponse(tokenResponse.getAccessToken(), tokenResponse.getRefreshToken());
+        } else {
+            throw  InvalidJwtException.EXCEPTION;
+        }
+    }
+
+
 
     public String resolveToken(HttpServletRequest request) {
         String bearer = request.getHeader("Authorization");

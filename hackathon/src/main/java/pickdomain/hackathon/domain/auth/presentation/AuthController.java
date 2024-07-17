@@ -7,9 +7,9 @@ import pickdomain.hackathon.domain.auth.presentation.dto.req.AccessTokenRequest;
 import pickdomain.hackathon.domain.auth.presentation.dto.req.CreateAccessTokenRequest;
 import pickdomain.hackathon.domain.auth.presentation.dto.res.AccessTokenResponse;
 import pickdomain.hackathon.domain.auth.presentation.dto.res.TokenResponse;
-import pickdomain.hackathon.domain.auth.service.CreateAccessTokenService;
 import pickdomain.hackathon.domain.auth.service.GoogleAuthLinkService;
 import pickdomain.hackathon.domain.auth.service.GoogleAuthService;
+import pickdomain.hackathon.domain.auth.service.RefreshService;
 
 @RequiredArgsConstructor
 @RequestMapping("/auth")
@@ -17,7 +17,7 @@ import pickdomain.hackathon.domain.auth.service.GoogleAuthService;
 public class AuthController {
     private final GoogleAuthLinkService googleAuthLinkService;
     private final GoogleAuthService googleAuthService;
-    private final CreateAccessTokenService createNewAccessToken;
+    private final RefreshService refreshService;
 
     @GetMapping
     public String getGoogleAuthLink() {
@@ -31,7 +31,7 @@ public class AuthController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/refresh")
-    public AccessTokenResponse createNewAccessToken(@RequestBody CreateAccessTokenRequest request) {
-        return createNewAccessToken.execute(request.getRefreshToken());
+    public TokenResponse createNewAccessToken(String token) {
+        return refreshService.refresh(token);
     }
 }
