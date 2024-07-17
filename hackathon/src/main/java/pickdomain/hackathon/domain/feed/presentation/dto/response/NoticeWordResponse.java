@@ -19,7 +19,7 @@ public class NoticeWordResponse {
         List<Query> queryList = new ArrayList<>();
         queryList.add(new Query(
                 news.getType(),
-                news.getId(),
+                news.getNewsId(),
                 news.getDescription(),
                 news.getJob()
         ));
