@@ -32,6 +32,9 @@ public interface NewsRepository extends JpaRepository<News, Long> {
                     "AND news.description LIKE %:descriptionKeyword%",
             nativeQuery = true
     )
-    List<News> findAllByPubDateAndTypeAndDescription(@Param("newsType") Type type, @Param("pubDateStart") String startDate, @Param("descriptionKeyword") String keyword);
+    List<News> findAllByPubDateAndTypeAndDescription(
+            @Param("newsType") String type,
+            @Param("pubDateStart") String startDate,
+            @Param("descriptionKeyword") String keyword);
 
 }

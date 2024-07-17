@@ -27,7 +27,7 @@ public class WordNewsService {
     public List<NoticeWordResponse> asdf(LocalDate date, String type, String word) {
         String today = date.format(dateTimeFormatter);
         return  newsRepository.findAllByPubDateAndTypeAndDescription(
-                Type.valueOf(type),today, word
+                Type.valueOf(type).name(),today, word
         ).stream()
                 .map( it ->
                         NoticeWordResponse.noticeWordResponse(it, word)
