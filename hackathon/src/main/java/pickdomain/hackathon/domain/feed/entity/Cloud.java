@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity(name="cloud")
@@ -25,7 +26,7 @@ public class Cloud {
     private int count;
 
     @Column(nullable = false)
-    private LocalDateTime issueDate;
+    private LocalDate issueDate;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

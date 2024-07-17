@@ -1,5 +1,6 @@
 package pickdomain.hackathon.domain.user.controller;
 
+import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -27,13 +28,13 @@ public class UserController {
         return profileService.execute();
     }
 
-    @Operation(summary = "내가 생성한 게시글 확인")
+    @ApiOperation( "내가 생성한 게시글 확인")
     @GetMapping("my-notice")
     public List<UserNoticeResponse> myNotice() {
         return userMyPageService.queryMyNotice();
     }
 
-    @Operation(summary = "내가 좋아요 누른 게시글 확인")
+    @ApiOperation("내가 좋아요 누른 게시글 확인")
     @GetMapping("my-share")
     public List<UserNoticeResponse> myShare() {
         return userMyPageService.queryShareNotice();

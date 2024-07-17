@@ -1,5 +1,6 @@
 package pickdomain.hackathon.domain.feed.controller;
 
+import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -19,13 +20,13 @@ public class NoticeController {
     private final NoticeFeedService noticeFeedService;
     private final QueryNoticeService queryNoticeService;
 
-    @Operation(summary = "게시글등록")
+    @ApiOperation("게시글등록")
     @PostMapping
     public void createNotice(@RequestBody NoticeFeedRequest noticeFeedRequest) {
         noticeFeedService.execute(noticeFeedRequest);
     }
 
-    @Operation(summary = "게시글 전체조회")
+    @ApiOperation("게시글 전체조회")
     @GetMapping
     public List<NoticeResponse> queryNotice() {
         return queryNoticeService.execute();

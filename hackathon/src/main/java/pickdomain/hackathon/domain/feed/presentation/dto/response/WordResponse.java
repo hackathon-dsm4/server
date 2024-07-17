@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import pickdomain.hackathon.domain.feed.entity.Type;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -12,6 +13,6 @@ public class WordResponse {
     private Long wordId;
     private String word;
     private Integer count;
-    private LocalDateTime issueDate;
+    private LocalDate issueDate;
     private Type kind;
 }
