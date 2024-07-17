@@ -26,13 +26,13 @@ public class Notice {
     @JoinColumn(name = "news_id", nullable = false)
     private News news;
     @Column(columnDefinition = "INT")
-    private Integer like;
+    private Integer count;
 
     public void addLike() {
-        this.like += 1;
+        this.count += 1;
     }
 
     public void minusLike() {
-        this.like -= 1;
+        this.count -= 1;
     }
 }

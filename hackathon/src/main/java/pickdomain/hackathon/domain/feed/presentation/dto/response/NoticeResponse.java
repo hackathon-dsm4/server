@@ -20,7 +20,7 @@ public class NoticeResponse {
                 .content(feed.getContent())
                 .newsTitle(feed.getNews().getTitle())
                 .type(feed.getNews().getType())
-                .like(feed.getLike())
+                .like(feed.getCount())
                 .user(feed.getUser().getName())
                 .build();
     }

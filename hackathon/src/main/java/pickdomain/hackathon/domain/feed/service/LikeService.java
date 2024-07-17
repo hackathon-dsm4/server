@@ -22,7 +22,7 @@ public class LikeService {
         if (likeRepository.existsByUserAndFeed(user, feed)){
             likeRepository.deleteByUserAndFeed(user, feed);
             feed.minusLike();
-            return feed.getLike();
+            return feed.getCount();
         }
         likeRepository.save(
                 FeedLike.builder()
@@ -31,6 +31,6 @@ public class LikeService {
                         .build()
         );
         feed.addLike();
-        return feed.getLike();
+        return feed.getCount();
     }
 }

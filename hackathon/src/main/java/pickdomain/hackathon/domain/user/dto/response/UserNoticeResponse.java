@@ -19,7 +19,7 @@ public class UserNoticeResponse {
                 .title(feed.getNews().getTitle())
                 .content(feed.getContent())
                 .type(feed.getNews().getType())
-                .like(feed.getLike())
+                .like(feed.getCount())
                 .profile(feed.getUser().getProfileImage())
                 .build();
     }
