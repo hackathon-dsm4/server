@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long NewsId;
+    private Long id;
     private String title;
     private String originallink;
     private String description;

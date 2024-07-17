@@ -19,8 +19,8 @@ public class NewsLikeService {
     private final UserFacade userFacade;
 
     @Transactional
-    public Integer execute(Long newsId) {
-        News news = newsRepository.findById(newsId).orElseThrow(()-> new RuntimeException());
+    public Integer execute(Long id) {
+        News news = newsRepository.findById(id).orElseThrow(()-> new RuntimeException());
         User user = userFacade.getCurrentUser();
 
         if (newsLikeRepository.existsByUserAndNews(user, news)){
