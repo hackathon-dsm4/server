@@ -19,14 +19,15 @@ public class LikeService {
 
     @Transactional
     public Integer execute(Long feedId) {
-        Notice feed = feedRepository.findById(feedId).orElseThrow(()-> new RuntimeException());
+        Notice feed = feedRepository.findById(feedId).orElseThrow(() -> new RuntimeException());
         User user = userFacade.getCurrentUser();
 
-        if (likeRepository.existsByUserAndFeed(user, feed)){
+        if (isAlreadyLiked(feed, user)) {
             likeRepository.deleteByUserAndFeed(user, feed);
             feed.minusLike();
             return feed.getCount();
         }
+
         likeRepository.save(
                 FeedLike.builder()
                         .user(user)
@@ -35,5 +36,9 @@ public class LikeService {
         );
         feed.addLike();
         return feed.getCount();
+    }
+
+    private boolean isAlreadyLiked(Notice feed, User user) {
+        return likeRepository.existsByUserAndFeed(user, feed);
     }
 }
