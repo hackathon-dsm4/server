@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum WordType {
+public enum DictionaryType {
     //경제 사회 과학 경영 공공 금융
     ECONOMY("경제"),
     SOCIAL("사회"),

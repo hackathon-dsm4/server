@@ -2,15 +2,18 @@ package pickdomain.hackathon.domain.dictionary.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+
+@Data
+@Entity(name = "dictionary")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Word {
+public class Dictionary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long wordId;
@@ -22,5 +25,7 @@ public class Word {
     private String meaning;
 
     @Enumerated(EnumType.STRING)
-    private WordType type;
+    private DictionaryType type;
+
 }
+
