@@ -8,6 +8,7 @@ import pickdomain.hackathon.domain.feed.entity.Feed;
 import pickdomain.hackathon.domain.feed.presentation.dto.request.NoticeFeedRequest;
 import pickdomain.hackathon.domain.news.entity.News;
 import pickdomain.hackathon.domain.news.repository.NewsRepository;
+import pickdomain.hackathon.domain.user.entity.User;
 import pickdomain.hackathon.domain.user.facade.UserFacade;
 
 @RequiredArgsConstructor
@@ -20,11 +21,11 @@ public class NoticeFeedService {
 
     @Transactional
     public void execute(NoticeFeedRequest noticeFeedRequest) {
-//        User user = userFacade.getCurrentUser();
+        User user = userFacade.getCurrentUser();
         News news = newsRepository.findById(noticeFeedRequest.getId()).orElseThrow(()-> new RuntimeException());
         Feed feed = Feed.builder()
                 .content(noticeFeedRequest.getContent())
-//                .userName(user.getName())
+                .user(user)
                 .news(news)
                 .like(0)
                 .build();

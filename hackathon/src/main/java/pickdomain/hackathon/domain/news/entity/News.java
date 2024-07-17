@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import pickdomain.hackathon.domain.feed.entity.Type;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter

@@ -41,5 +41,4 @@ public class UserMyPageService {
                 .collect(Collectors.toList());
         return userNoticeResponses;
     }
-    public void execute() {}
 }
