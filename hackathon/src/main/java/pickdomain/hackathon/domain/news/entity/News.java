@@ -28,6 +28,7 @@ public class News {
     private Type type;
     @Column(columnDefinition = "INT")
     private Integer count;
+    private String profile;
 
     public void addLike() {
         this.count += 1;

@@ -20,7 +20,8 @@ public class NoticeWordResponse {
                 news.getType(),
                 news.getId(),
                 news.getDescription(),
-                news.getJob()
+                news.getJob(),
+                news.getProfile()
         ));
 
         return NoticeWordResponse.builder()
@@ -37,11 +38,13 @@ class Query {
     private Long id;
     private String content;
     private String job;
+    private String profile;
 
-    public Query(Type type, Long id, String content, String job) {
+    public Query(Type type, Long id, String content, String job, String profile) {
         this.type = type;
         this.id = id;
         this.content = content;
         this.job = job;
+        this.profile = profile;
     }
 }

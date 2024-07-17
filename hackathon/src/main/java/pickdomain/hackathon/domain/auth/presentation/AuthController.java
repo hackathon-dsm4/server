@@ -31,7 +31,7 @@ public class AuthController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/refresh")
-    public TokenResponse createNewAccessToken(String token) {
-        return refreshService.refresh(token);
+    public TokenResponse createNewAccessToken(@RequestBody AccessTokenRequest token) {
+        return refreshService.refresh(token.getAccessToken());
     }
 }
