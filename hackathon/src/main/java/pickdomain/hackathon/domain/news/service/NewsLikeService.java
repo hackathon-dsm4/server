@@ -4,12 +4,15 @@ package pickdomain.hackathon.domain.news.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pickdomain.hackathon.domain.feed.entity.FeedLike;
 import pickdomain.hackathon.domain.news.entity.News;
 import pickdomain.hackathon.domain.news.entity.NewsLike;
 import pickdomain.hackathon.domain.news.repository.NewsLikeRepository;
 import pickdomain.hackathon.domain.news.repository.NewsRepository;
 import pickdomain.hackathon.domain.user.entity.User;
 import pickdomain.hackathon.domain.user.facade.UserFacade;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
