@@ -83,4 +83,5 @@ public class WordCloudService {
                         .issueDate(cloud.getIssueDate()).build())
                 .collect(Collectors.toList());
     }
+
 }

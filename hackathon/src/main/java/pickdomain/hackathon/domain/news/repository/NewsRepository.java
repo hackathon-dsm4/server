@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 import pickdomain.hackathon.domain.feed.entity.Type;
 import pickdomain.hackathon.domain.news.entity.News;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface NewsRepository extends JpaRepository<News, Long> {
@@ -22,4 +22,16 @@ public interface NewsRepository extends JpaRepository<News, Long> {
             String start,
             @Param("type")
             String type);
+
+
+    @Query(
+            value = "SELECT * " +
+                    "FROM news " +
+                    "WHERE news.pub_date LIKE :pubDateStart% " +
+                    "AND news.type = :newsType " +
+                    "AND news.description LIKE %:descriptionKeyword%",
+            nativeQuery = true
+    )
+    List<News> findAllByPubDateAndTypeAndDescription(@Param("newsType") Type type, @Param("pubDateStart") String startDate, @Param("descriptionKeyword") String keyword);
+
 }

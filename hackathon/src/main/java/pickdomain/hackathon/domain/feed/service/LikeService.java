@@ -2,6 +2,7 @@ package pickdomain.hackathon.domain.feed.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pickdomain.hackathon.domain.feed.entity.FeedLike;
 import pickdomain.hackathon.domain.feed.entity.Notice;
 import pickdomain.hackathon.domain.feed.repository.FeedRepository;
@@ -15,6 +16,8 @@ public class LikeService {
     private final LikeRepository likeRepository;
     private final FeedRepository feedRepository;
     private final UserFacade userFacade;
+
+    @Transactional
     public Integer execute(Long feedId) {
         Notice feed = feedRepository.findById(feedId).orElseThrow(()-> new RuntimeException());
         User user = userFacade.getCurrentUser();

@@ -12,4 +12,6 @@ import java.util.Optional;
 
 public interface CloudRepository extends JpaRepository<Cloud, Long> {
     List<Cloud> findAllByIssueDateAndKind(LocalDate issueDate, Type kind);
+
+    List<Cloud> findAllByIssueDateAndKindAndWord(LocalDate issueDate, Type kind, String word);
 }

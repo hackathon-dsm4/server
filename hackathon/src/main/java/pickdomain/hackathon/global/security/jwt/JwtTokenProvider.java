@@ -30,7 +30,7 @@ public class JwtTokenProvider {
     private static final String REFRESH_KEY = "refresh_token";
 
     public String createAccessToken(String email) {
-        return createToken(email, ACCESS_KEY, jwtProperties.getAccessTime());
+        return createToken(email, ACCESS_KEY, 1000*jwtProperties.getAccessTime());
     }
 
     @Transactional

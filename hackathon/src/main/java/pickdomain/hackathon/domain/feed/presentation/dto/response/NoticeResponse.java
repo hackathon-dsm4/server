@@ -8,6 +8,7 @@ import pickdomain.hackathon.domain.feed.entity.Type;
 @Getter
 @Builder
 public class NoticeResponse {
+    private Long id;
     private String content;
 //    private String userName;
     private String newsTitle;
@@ -17,6 +18,7 @@ public class NoticeResponse {
 
     public static NoticeResponse noticeResponse(Notice feed) {
         return NoticeResponse.builder()
+                .id(feed.getFeedId())
                 .content(feed.getContent())
                 .newsTitle(feed.getNews().getTitle())
                 .type(feed.getNews().getType())

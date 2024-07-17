@@ -23,6 +23,8 @@ public class News {
     private String description;
     private String pubDate;
     private String link;
+    private String job;
     @Enumerated(EnumType.STRING)
     private Type type;
+    private String comment;
 }

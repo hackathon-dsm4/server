@@ -27,7 +27,7 @@ public class NoticeFeedService {
                 .content(noticeFeedRequest.getContent())
                 .user(user)
                 .news(news)
-                .like(0)
+                .count(0)
                 .build();
         feedRepository.save(feed);
     }
