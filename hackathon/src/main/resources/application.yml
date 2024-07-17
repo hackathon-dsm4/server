@@ -37,6 +37,9 @@ auth:
     client-id: 889367937280-n63ri216vealltnbifoko7p14gh14jn8.apps.googleusercontent.com
     redirect-url: http://localhost:3000/google/callback
 
+
+
+
 jwt:
   refresh-time: 2592000000
   access-time: 999999999999999999

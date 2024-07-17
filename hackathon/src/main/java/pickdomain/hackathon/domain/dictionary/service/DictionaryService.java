@@ -9,17 +9,24 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import pickdomain.hackathon.domain.dictionary.dto.responseDto.DictionaryResponseDto;
 import pickdomain.hackathon.domain.dictionary.entity.Dictionary;
+import pickdomain.hackathon.domain.dictionary.entity.DictionaryType;
 import pickdomain.hackathon.domain.dictionary.repository.DictionaryRepository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class DictionaryService {
 
     private final DictionaryRepository dictionaryRepository;
 
-    public Page<DictionaryResponseDto> getwords(int page, Specification<Dictionary> spec) {
-        return dictionaryRepository.findAll(spec, PageRequest.of(page,7)).map(this::CovertDictionaryToDto);
+    public List<DictionaryResponseDto> getwords(DictionaryType type) {
+        if(type != null) {
+            return dictionaryRepository.findAllByType(type).stream().map(this::CovertDictionaryToDto).collect(Collectors.toList());
+        }
+
+        return dictionaryRepository.findAll().stream().map(this::CovertDictionaryToDto).collect(Collectors.toList());
     }
 
     public DictionaryResponseDto CovertDictionaryToDto(Dictionary dictionary) {

@@ -22,6 +22,7 @@ public class UserController {
     private final ProfileService profileService;
     private final UserMyPageService userMyPageService;
 
+
     @Operation(summary = "내정보확인")
     @GetMapping
     public InfoUserResponse findMyInfo() {

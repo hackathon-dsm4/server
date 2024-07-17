@@ -51,7 +51,7 @@ public class WordCloudService {
 
         Map<String, Integer> topTenWords = wordFrequency.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                .limit(10)
+                .limit(30)
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue,

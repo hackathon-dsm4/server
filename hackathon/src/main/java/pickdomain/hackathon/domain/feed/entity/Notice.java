@@ -9,7 +9,7 @@ import pickdomain.hackathon.domain.user.entity.User;
 
 import javax.persistence.*;
 
-@Entity(name = "feed")
+@Entity(name = "Feed")
 @NoArgsConstructor
 @Getter
 @AllArgsConstructor

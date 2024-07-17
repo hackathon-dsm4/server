@@ -21,4 +21,6 @@ public class QueryNewsResponse {
     private String link;
     private Type type;
     private List<String> comment;
+
+
 }

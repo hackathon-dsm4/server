@@ -13,13 +13,13 @@ import pickdomain.hackathon.domain.user.repository.UserRepository;
 public class UserFacade {
     private final UserRepository userRepository;
 
-    public User findByUserId(String userId) {
+    public User findByEmail(String userId) {
         return userRepository.findByEmail(userId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }
 
     public User getCurrentUser () {
         String id = SecurityContextHolder.getContext().getAuthentication().getName();
-        return findByUserId(id);
+        return findByEmail(id);
     }
 }

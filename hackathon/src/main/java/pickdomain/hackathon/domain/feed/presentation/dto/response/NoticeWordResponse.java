@@ -2,7 +2,6 @@ package pickdomain.hackathon.domain.feed.presentation.dto.response;
 
 import lombok.Builder;
 import lombok.Getter;
-import pickdomain.hackathon.domain.feed.entity.Cloud;
 import pickdomain.hackathon.domain.feed.entity.Type;
 import pickdomain.hackathon.domain.news.entity.News;
 

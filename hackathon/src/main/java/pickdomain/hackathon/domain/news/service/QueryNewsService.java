@@ -21,7 +21,7 @@ public class QueryNewsService {
         News news = newsRepository.findById(id).orElse(null);
         List<Notice> notice = feedRepository.findAllByNews(news);
         return new QueryNewsResponse(
-                news.getTitle(), news.getOriginallink(), news.getDescription(), news.getPubDate(),news.getLink(),
+                 news.getTitle(), news.getOriginallink(), news.getDescription(), news.getPubDate(),news.getLink(),
                  news.getType(), notice.stream().map(it-> it.getContent()).collect(Collectors.toList())
         );
     }

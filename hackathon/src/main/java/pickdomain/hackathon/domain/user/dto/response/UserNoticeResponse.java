@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import pickdomain.hackathon.domain.feed.entity.Notice;
 import pickdomain.hackathon.domain.feed.entity.Type;
+import pickdomain.hackathon.domain.user.entity.User;
 
 @Getter
 @Builder
@@ -12,6 +13,7 @@ public class UserNoticeResponse {
     private String content;
     private Type type;
     private Integer like;
+    private String user;
     private String profile;
 
     public static UserNoticeResponse userMyPageResponse(Notice feed) {
@@ -20,6 +22,7 @@ public class UserNoticeResponse {
                 .content(feed.getContent())
                 .type(feed.getNews().getType())
                 .like(feed.getCount())
+                .user(feed.getUser().getName())
                 .profile(feed.getUser().getProfileImage())
                 .build();
     }

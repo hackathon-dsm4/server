@@ -9,7 +9,7 @@ import pickdomain.hackathon.domain.feed.entity.Type;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "news")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long NewsId;
+    private Long id;
     private String title;
     private String originallink;
     private String description;
@@ -26,7 +26,6 @@ public class News {
     private String job;
     @Enumerated(EnumType.STRING)
     private Type type;
-    private String comment;
     @Column(columnDefinition = "INT")
     private Integer count;
 
