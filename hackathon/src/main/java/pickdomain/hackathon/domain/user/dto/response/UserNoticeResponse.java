@@ -12,6 +12,7 @@ public class UserNoticeResponse {
     private String content;
     private Type type;
     private Integer like;
+    private String profile;
 
     public static UserNoticeResponse userMyPageResponse(Feed feed) {
         return UserNoticeResponse.builder()
@@ -19,6 +20,7 @@ public class UserNoticeResponse {
                 .content(feed.getContent())
                 .type(feed.getNews().getType())
                 .like(feed.getLike())
+                .profile(feed.getUser().getProfileImage())
                 .build();
     }
 }
