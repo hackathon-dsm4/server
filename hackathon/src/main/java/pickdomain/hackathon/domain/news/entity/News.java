@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long NewsId;
     private String title;
     private String originallink;
     private String description;
@@ -27,4 +27,14 @@ public class News {
     @Enumerated(EnumType.STRING)
     private Type type;
     private String comment;
+    @Column(columnDefinition = "INT")
+    private Integer count;
+
+    public void addLike() {
+        this.count += 1;
+    }
+
+    public void minusLike() {
+        this.count -= 1;
+    }
 }
