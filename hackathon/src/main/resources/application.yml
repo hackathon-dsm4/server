@@ -1,4 +1,7 @@
 spring:
+  redis:
+    host: localhost
+    port: 6379
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -11,9 +14,6 @@ spring:
     password:
     hikari:
       maxLifetime: 580000
-  redis:
-    host: localhost
-    port: 6379
   jpa:
     hibernate:
       ddl-auto: update
@@ -36,8 +36,6 @@ auth:
     base-url: https://accounts.google.com/o/oauth2/v2/auth
     client-id: 889367937280-n63ri216vealltnbifoko7p14gh14jn8.apps.googleusercontent.com
     redirect-url: http://localhost:3000/google/callback
-
-
 
 
 jwt:

@@ -26,12 +26,12 @@ public class AuthController {
 
     @PostMapping
     public TokenResponse login(@RequestBody AccessTokenRequest accessTokenRequest) {
-        return googleAuthService.execute(accessTokenRequest.getAccessToken());
+        return googleAuthService.execute(accessTokenRequest.getToken());
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/refresh")
     public TokenResponse createNewAccessToken(@RequestBody AccessTokenRequest token) {
-        return refreshService.refresh(token.getAccessToken());
+        return refreshService.refresh(token.getToken());
     }
 }

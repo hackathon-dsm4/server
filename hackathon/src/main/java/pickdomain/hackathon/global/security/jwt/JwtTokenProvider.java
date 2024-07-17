@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import pickdomain.hackathon.domain.auth.domain.RefreshToken;
 import pickdomain.hackathon.domain.auth.domain.repository.RefreshTokenRepository;
-import pickdomain.hackathon.domain.auth.presentation.dto.res.AccessTokenResponse;
 import pickdomain.hackathon.domain.auth.presentation.dto.res.TokenResponse;
 import pickdomain.hackathon.global.config.properties.JwtProperties;
 import pickdomain.hackathon.global.exception.InvalidJwtException;
@@ -37,7 +36,7 @@ public class JwtTokenProvider {
         String token = refreshToken(REFRESH_KEY, jwtProperties.getRefreshTime());
         String accessToken = createToken(email, ACCESS_KEY, 1000*jwtProperties.getAccessTime());
         refreshTokenRepository.save(
-                new RefreshToken(token, email)
+                new RefreshToken(email,token)
         );
         return new TokenResponse(accessToken, token);
     }
@@ -63,16 +62,16 @@ public class JwtTokenProvider {
     }
 
     public TokenResponse reIssue(String refreshToken) {
-        Optional<RefreshToken> optionalToken = refreshTokenRepository.findById(refreshToken);
-        if (optionalToken.isPresent()) {
-            RefreshToken token = optionalToken.get();
-            String id = token.getToken();
+        RefreshToken token = refreshTokenRepository.findByToken(refreshToken);
+        if (token != null) {
+            String id = token.getId();
 
             TokenResponse tokenResponse = createToken(id);
-            token.update(tokenResponse.getRefreshToken());
+            token.update(tokenResponse.getRefreshToken(), jwtProperties.getRefreshTime());
+            refreshTokenRepository.save(token);
             return new TokenResponse(tokenResponse.getAccessToken(), tokenResponse.getRefreshToken());
         } else {
-            throw  InvalidJwtException.EXCEPTION;
+            throw InvalidJwtException.EXCEPTION;
         }
     }
 

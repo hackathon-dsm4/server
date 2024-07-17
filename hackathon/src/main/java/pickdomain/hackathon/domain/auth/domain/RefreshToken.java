@@ -5,24 +5,29 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.TimeToLive;
+import org.springframework.data.redis.core.index.Indexed;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@RedisHash(value = "refreshToken", timeToLive = 2592000L)
+@RedisHash(value = "refreshToken")
 public class RefreshToken {
     @Id
+    private String id;
+    @Indexed
     private String token;
-
-    private String email;
+    @TimeToLive
+    private Long ttl;
 
     public RefreshToken(
-        String token, String email
+          String id,String token
     ) {
+        this.id = id;
         this.token = token;
-        this.email = email;
     }
 
-    public void update(String newToken) {
-        this.token = newToken;
+    public void update(String newToken, Long ttl) {
+        this.id = newToken;
+        this.ttl = ttl;
     }
 }
