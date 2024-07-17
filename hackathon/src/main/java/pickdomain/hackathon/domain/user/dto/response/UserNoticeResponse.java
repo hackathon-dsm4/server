@@ -2,7 +2,7 @@ package pickdomain.hackathon.domain.user.dto.response;
 
 import lombok.Builder;
 import lombok.Getter;
-import pickdomain.hackathon.domain.feed.entity.Feed;
+import pickdomain.hackathon.domain.feed.entity.Notice;
 import pickdomain.hackathon.domain.feed.entity.Type;
 
 @Getter
@@ -14,7 +14,7 @@ public class UserNoticeResponse {
     private Integer like;
     private String profile;
 
-    public static UserNoticeResponse userMyPageResponse(Feed feed) {
+    public static UserNoticeResponse userMyPageResponse(Notice feed) {
         return UserNoticeResponse.builder()
                 .title(feed.getNews().getTitle())
                 .content(feed.getContent())

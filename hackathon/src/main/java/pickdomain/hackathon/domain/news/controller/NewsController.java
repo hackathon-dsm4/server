@@ -1,21 +1,25 @@
 package pickdomain.hackathon.domain.news.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pickdomain.hackathon.domain.news.dto.QueryNewsResponse;
 import pickdomain.hackathon.domain.news.service.NewsSerivce;
+import pickdomain.hackathon.domain.news.service.QueryNewsService;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/news")
 public class NewsController {
-    private final NewsSerivce newsSerivce;
-    @GetMapping
-    public String news(
-            @RequestParam(value = "category") String type
-    ) {
-        return newsSerivce.news(type);
-    };
+    private final QueryNewsService queryNewsService;
+//    @GetMapping
+//    public String news(
+//            @RequestParam(value = "category") String type
+//    ) {
+//        return newsSerivce.news(type);
+//    };
+
+    @GetMapping("/{id}")
+    public QueryNewsResponse queryNews(@PathVariable Long id) {
+        return queryNewsService.execute(id);
+    }
 }

@@ -3,8 +3,8 @@ package pickdomain.hackathon.domain.user.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pickdomain.hackathon.domain.feed.entity.Feed;
 import pickdomain.hackathon.domain.feed.entity.FeedLike;
+import pickdomain.hackathon.domain.feed.entity.Notice;
 import pickdomain.hackathon.domain.feed.repository.FeedRepository;
 import pickdomain.hackathon.domain.feed.repository.LikeRepository;
 import pickdomain.hackathon.domain.user.dto.response.UserNoticeResponse;
@@ -35,7 +35,7 @@ public class UserMyPageService {
 
         List<UserNoticeResponse> userNoticeResponses = likes.stream()
                 .map(like -> {
-                    Feed feed = like.getFeed();
+                    Notice feed = like.getFeed();
                     return UserNoticeResponse.userMyPageResponse(feed);
                 })
                 .collect(Collectors.toList());
